@@ -49,16 +49,20 @@ class UploadImage extends Component{
         keys.forEach(key=>{
           form_data.append("images[]",this.state.formphotoList[key])
         })
-        let url = 'http://localhost:8000/image/';
+        let url = 'https://fathomless-mountain-09030.herokuapp.com/api/image/';
         const response =axios.post(url, form_data, {
             headers: {
               'content-type': 'multipart/form-data'
             }
           })
           .then(res => {
-                console.log(res.data);
-                this.setState({open:true,message:res.data["message"]})
-
+                let status = res.status
+                if (status==200 || status==201){
+                  this.setState({open:true,message:"Images saved Successfully"})
+                }
+                else{
+                  this.setState({open:true,message:res.data["message"]})
+                }
               })
               .catch(err =>{
                   let response = err.response
@@ -67,6 +71,7 @@ class UploadImage extends Component{
           )
         return new Promise((resolve, reject) => {
           setTimeout(function() {
+            console.log(response)
             response ? resolve(response) : reject('Error');
           },0);
         })

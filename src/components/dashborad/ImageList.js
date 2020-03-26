@@ -33,47 +33,6 @@ const useStyles = makeStyles(theme => ({
   // }
 }));
 
-const tileData=[
-{
-    "id": 1,
-    "tag": [],
-    "imagesrc": "http://127.0.0.1:8000/media/documents/Sample-Hospital-Software-Bill-MyOPD-Beds_R8UK4CN.jpg",
-    "description": "",
-    "createdDate": "2020-02-14",
-    "user": 1,
-    cols:2,
-    rows:1
-},
-{
-    "id": 2,
-    "tag": [],
-    "imagesrc": "http://127.0.0.1:8000/media/documents/1_mIPxTSp.jpg",
-    "description": "",
-    "createdDate": "2020-02-14",
-    cols:1,
-    rows:1
-
-},
-{
-    "id": 3,
-    "tag": [],
-    "imagesrc": "http://127.0.0.1:8000/media/documents/Sample-Hospital-Software-Bill-MyOPD-Beds_R8UK4CN.jpg",
-    "description": "",
-    "createdDate": "2020-02-14",
-    "user": 1,
-    cols:2,
-    rows:2
-
-},
-{
-    "id": 4,
-    "tag": [],
-    "imagesrc": "http://127.0.0.1:8000/media/documents/Sample-Hospital-Software-Bill-MyOPD-Beds_VayyfKv.jpg",
-    "description": "",
-    "createdDate": "2020-02-14",
-    cols:1,
-    rows:1
-}]
 
 export default function ImageGridList(props) {
   const classes = useStyles();

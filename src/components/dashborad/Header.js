@@ -66,7 +66,7 @@ function ResponsiveDrawer(props) {
       <ListItem button >
             <ListItemText style={{ color: "Black", align:"centre" }}></ListItemText>
           </ListItem>
-        <a href="/dashboard/" style={{ textDecoration: 'none' }}>
+        <a href="/" style={{ textDecoration: 'none' }}>
           <ListItem button >
             <ListItemText style={{ color: "White",textDecoration: 'none' }} activeStyle = {{backgroundColor:"Blue"}}>Dashboard</ListItemText>
             <ListItemText style={{ color: "Black", align:"centre" }}></ListItemText>
@@ -74,7 +74,7 @@ function ResponsiveDrawer(props) {
         </a>
         <ListItem button >
       
-          <a href='/uploadimage/'>
+          <a href='/imageapp/uploadimage/'>
             <ListItemText style={{ color: "White",textDecoration: 'none' }} activeStyle = {{backgroundColor:"Blue"}}>Upload Image</ListItemText>
           </a>
         </ListItem>

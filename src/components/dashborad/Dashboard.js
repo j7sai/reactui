@@ -3,17 +3,20 @@ import Header from './Header';
 import Imagelist from './ImageList';
 import axios from 'axios';
 import SearchBar from './searchbar'
-
+import Pagination from './Pagination';
 class Dashboard extends Component{
     constructor(props)
     {
         super()
         this.state={
-            images:[]
+            images:{
+                results:[],
+                count:0
+            }
         }
     }
     componentDidMount(){
-      axios.get('http://localhost:8000/images/')
+      axios.get('https://fathomless-mountain-09030.herokuapp.com/api/images/')
       .then(response => {
        this.setState({images:response.data})
       })
@@ -26,6 +29,16 @@ class Dashboard extends Component{
       this.setState({images:images})
     }
 
+    handlePaginationNumber=(pageNumber)=>{
+        axios.get(`https://fathomless-mountain-09030.herokuapp.com/api/images/?page=${pageNumber}`)
+        .then(response => {
+         this.setState({images:response.data})
+        })
+        .catch(error => {
+            console.log(error)
+        }) 
+    }
+
     render()
     {
         return (
@@ -34,7 +47,9 @@ class Dashboard extends Component{
                 <br/><br/><br/>
                 <center>
                 <SearchBar handleSetSearchImages={this.handlesearchimages} />
-                <Imagelist imageList={this.state.images} handleClick={this.handleClickImage}/>
+                <br/>
+                {this.state.images.results.length!==0?<Imagelist imageList={this.state.images.results} handleClick={this.handleClickImage}/>:<p>No Images Found</p>}
+                {this.state.images.results.length!==0?<Pagination handlePage={this.handlePaginationNumber} countImages = {this.state.images.count}/>:null}
                 </center>
             </div>
         )

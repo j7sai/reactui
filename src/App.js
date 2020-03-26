@@ -11,12 +11,14 @@ class App extends Component{
     <div className="App">
   <BrowserRouter>
         <Switch>
-          <Route path="/dashboard/"><Dashboard/></Route>
-          <Route path='/uploadimage/'>
+         
+          <Route path='/imageapp/uploadimage/'>
           <Header/>
           <UploadImage />
           </Route>
+          <Dashboard/>
         </Switch>
+      
   </BrowserRouter> 
     </div>
   );

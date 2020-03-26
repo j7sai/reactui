@@ -41,7 +41,7 @@ export default function CustomizedInputBase(props) {
   }
   
   function sumbitSearch(){
-      axios.get(`http://localhost:8000/images/?search=${search}`)
+      axios.get(`https://fathomless-mountain-09030.herokuapp.com/api/images/?search=${search}`)
       .then(response => {
         props.handleSetSearchImages(response.data)
       })
@@ -51,14 +51,14 @@ export default function CustomizedInputBase(props) {
   }
 
   return (
-    <Paper  className={classes.root} component="form" onSubmit={sumbitSearch} >
+    <Paper  className={classes.root} >
 
       <InputBase
         className={classes.input}
         placeholder="search Images using tags,description and dates ,ie ex: fromdate:20-19-2020 tags:animals,sports"
         onChange={handleSearchInput}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
+      <IconButton onClick={sumbitSearch} type="submit" className={classes.iconButton} aria-label="search">
         <SearchIcon />
       </IconButton>
      
