@@ -42,7 +42,7 @@ class UploadImage extends Component{
       this.setState({open: false });
     };
   
-    getCreateResponse() {
+    async  getCreateResponse() {
         let form_data = new FormData();
         form_data.append('description', this.state.values.description)
         let keys = Object.keys(this.state.formphotoList)
@@ -50,37 +50,36 @@ class UploadImage extends Component{
           form_data.append("images[]",this.state.formphotoList[key])
         })
         let url = 'https://fathomless-mountain-09030.herokuapp.com/api/image/';
-        const response =axios.post(url, form_data, {
-            headers: {
-              'content-type': 'multipart/form-data'
-            }
-          })
-          .then(res => {
-                let status = res.status
-                if (status==200 || status==201){
-                  this.setState({open:true,message:"Images saved Successfully"})
-                }
-                else{
-                  this.setState({open:true,message:res.data["message"]})
-                }
-              })
-              .catch(err =>{
-                  let response = err.response
-                  this.setState({open:true,message:response.data["message"]})
-              }
-          )
-        return new Promise((resolve, reject) => {
+        // const response =
+        return await new Promise((resolve, reject) => {
           setTimeout(function() {
-            console.log(response)
-            response ? resolve(response) : reject('Error');
+            resolve(axios.post(url, form_data, {
+              headers: {
+                'content-type': 'multipart/form-data'
+              }
+            })
+            .then(res => {
+                  let status = res.status
+                  if (status==200 || status==201){
+                    this.setState({open:true,message:"Images saved Successfully"})
+                  }
+                  else{
+                    this.setState({open:true,message:res.data["message"]})
+                  }
+                })
+                .catch(err =>{
+                    let response = err.response
+                    this.setState({open:true,message:response.data["message"]})
+                }
+            )) 
           },0);
         })
       }
 
     handleSubmit = () => {
-          console.log("Dsdssd")
+          // console.log("Dsdssd")
           this.getCreateResponse()
-            .then(currentResponse => this.getCreateResponse())
+            // .then(currentResponse => this.getCreateResponse())
             .then(currentRepsonse => {
               setTimeout(() => {
                 this.setState({
